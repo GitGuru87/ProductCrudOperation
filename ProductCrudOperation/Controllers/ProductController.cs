@@ -94,7 +94,15 @@ namespace ProductCrudOperation.Controllers
                 return Json(new { success = false, message = ex.Message }); // Return error message
             }
         }
-
+        public async Task<IActionResult> Details(int id)
+        {
+            var product = await _repository.GetProductById(id);
+            if (product == null)
+            {
+                return NotFound(); // Return a 404 error if the product is not found
+            }
+            return View(product); // Pass the product to the view
+        }
 
     }
 }
