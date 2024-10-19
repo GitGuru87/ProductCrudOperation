@@ -99,9 +99,9 @@ namespace ProductCrudOperation.Controllers
             var product = await _repository.GetProductById(id);
             if (product == null)
             {
-                return NotFound(); // Return a 404 error if the product is not found
+                return NotFound(); 
             }
-            return View(product); // Pass the product to the view
+            return View(product); 
         }
 
     }
