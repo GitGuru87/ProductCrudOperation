@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dappator" Version="1.0.1.1" />
+    <PackageReference Include="linq2db.SqlServer.MS" Version="5.4.1" />
+    <PackageReference Include="Mariapps.RepositoryOperations.Framework" Version="1.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
+    <PackageReference Include="Plugin.Payments.Weixin" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>

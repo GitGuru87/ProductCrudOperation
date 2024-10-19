@@ -1,0 +1,134 @@
+/* Responsive font size */
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+/* Focus states for buttons, links, and form elements */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* Layout adjustments */
+body {
+    margin-bottom: 60px;
+}
+
+/* Additional styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 20px;
+}
+
+h4 {
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+.text-danger {
+    color: #dc3545;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+.row {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+/* Custom styling for the form container */
+.form-container {
+    max-width: 800px; /* Increase the width of the form */
+    margin: 0 auto; /* Center the form */
+    border: 1px solid #ccc; /* Add border for better visibility */
+    border-radius: 10px;
+    background-color: #f8f9fa; /* Light background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+    /* Style for input fields */
+    .form-container .form-control {
+        height: 20px; /* Increase the height of the input fields */
+        font-size: 1rem;
+    }
+
+/* Button styling */
+.btn {
+    padding: 10px 20px; /* Increase padding for larger button size */
+    font-size: 1rem;
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Specific style for making the Back to List button consistent */
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #fff;
+}
+/* Custom styles for centering */
+.header-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100px; /* Set height for vertical centering */
+}
+.btn-sm {
+    padding: 0.25rem 0.5rem; /* Adjust padding for smaller size */
+    font-size: 0.8rem; /* Smaller font size */
+}
+.align-right {
+    text-align: right;
+}
+.custom-small-btn {
+    font-size: 0.8rem; /* Adjust font size as needed */
+    padding: 0.25rem 0.5rem; /* Adjust padding as needed */
+}

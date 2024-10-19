@@ -1,0 +1,84 @@
+﻿@model ProductCrudOperation.Models.Product
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+
+    <div class="header-container">
+        <h4>ADD PRODUCT</h4>
+    </div>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="form-container p-4">
+                <form asp-action="Add" id="productForm">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CreatedDate" class="control-label"></label>
+                        <input asp-for="CreatedDate" class="form-control" />
+                        <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group text-center">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-secondary ml-2">Back to List</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @* <script src="~/js/site.js"></script> *@
+    <script>
+        $(document).ready(function () {
+            $('#productForm').on('submit', function (e) {
+                e.preventDefault(); 
+
+                if ($(this).valid()) {
+                    $.ajax({
+                        type: 'POST',
+                        url: $(this).attr('action'),
+                        data: $(this).serialize(),
+                        success: function (response) {
+                            alert('Data added successfully!');
+                            window.location.href = '@Url.Action("Add", "Product")'; 
+                        },
+                        error: function (xhr, status, error) {
+                            console.log("Error:", xhr.responseText); 
+                            alert('An error occurred while adding the data.');
+                        }
+                    });
+                } else {
+                    $('.text-danger').show(); 
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

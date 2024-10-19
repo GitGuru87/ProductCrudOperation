@@ -1,0 +1,97 @@
+﻿@model ProductCrudOperation.Models.Product
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" /> <!-- Bootstrap CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+
+    <div class="header-container text-center">
+        <h4>EDIT PRODUCT</h4> 
+    </div>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="form-container p-4 border rounded bg-light shadow">
+                <form id="productForm" asp-action="Edit" method="post">
+                    
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @* <div class="form-group">
+                        <label asp-for="Id" class="control-label"></label>
+                        <input asp-for="Id" class="form-control" readonly /> <!-- Id should be readonly -->
+                        <span asp-validation-for="Id" class="text-danger"></span>
+                    </div> *@
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CreatedDate" class="control-label"></label>
+                        <input asp-for="CreatedDate" class="form-control" />
+                        <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group text-center">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-secondary ml-2">Back to List</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @* <script src="~/js/site.js"></script> *@
+    <script>
+        $(document).ready(function () {
+            $('#productForm').on('submit', function (e) {
+                e.preventDefault(); 
+                if ($(this).valid()) { 
+                    $.ajax({
+                        type: 'POST',
+                        url: $(this).attr('action'), 
+                        data: $(this).serialize(), 
+                        success: function (response) {
+                            
+                            if (response.success) {
+                                alert('Data updated successfully!'); 
+                                window.location.href = '@Url.Action("Index", "Product")'; 
+                            } else {
+                                alert('Update failed: ' + response.message); 
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.log("Error:", xhr.responseText); 
+                            alert('An error occurred while updating the data.');
+                        }
+                    });
+                } else {
+                    $('.text-danger').show(); 
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+﻿@model ProductCrudOperation.Models.Product
+@using Newtonsoft.Json
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" /> <!-- Bootstrap CSS -->
+</head>
+<body>
+
+    <div class="header-container text-center">
+        <h4>DELETE PRODUCT</h4> <!-- Center the heading -->
+    </div>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="form-container p-4 border rounded bg-light shadow">
+                <div>
+                   
+                    <hr />
+                    <table class="table table-bordered">
+                        <tbody>
+                            @* <tr>
+                                <th>@Html.DisplayNameFor(model => model.Id)</th>
+                                <td>@Html.DisplayFor(model => model.Id)</td>
+                            </tr> *@
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                                <td>@Html.DisplayFor(model => model.Name)</td>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.Description)</th>
+                                <td>@Html.DisplayFor(model => model.Description)</td>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.Price)</th>
+                                <td>@Html.DisplayFor(model => model.Price)</td>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.CreatedDate)</th>
+                                <td>@Html.DisplayFor(model => model.CreatedDate)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="form-group text-center">
+                        <form id="deleteForm" asp-action="Delete" method="post" data-product-name="@Model.Name" data-redirect-url="@Url.Action("Index", "Product")">
+                            <input type="hidden" asp-for="Id" /> <!-- Hidden field for Id -->
+                            <input type="submit" value="Delete" class="btn btn-danger" />
+                            <a asp-action="Index" class="btn btn-secondary ml-2">Back to List</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    @* <script src="~/js/site.js"></script> *@
+    <script>
+        $(document).ready(function () {
+    $('#deleteForm').on('submit', function (e) {
+    e.preventDefault(); 
+
+    
+        const productName = @Html.Raw(JsonConvert.SerializeObject(Model.Name)); 
+    if (confirm(`Are you sure you want to delete the product "${productName}"?`)) {
+    
+    $.ajax({
+    type: 'POST',
+    url: $(this).attr('action'), 
+    data: $(this).serialize(), 
+    success: function (response) {
+    if (response.success) {
+    alert('Data deleted successfully!'); 
+    window.location.href = '@Url.Action("Index", "Product")'; 
+    } else {
+    alert('Delete failed: ' + response.message); 
+    }
+    },
+    error: function (xhr, status, error) {
+    console.log("Error:", xhr.responseText); 
+    alert('An error occurred while deleting the data.');
+    }
+    });
+    }
+    });
+    });
+
+    </script> 
+
+</body>
+</html>
