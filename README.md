@@ -26,7 +26,7 @@ Visual Studio 2022 or Visual Studio Code with C# support
 **Getting Started**:
 Follow these steps to get the project up and running:
 Clone the repository:
-https://github.com/GitGuru87/ProductCrudOperation.
+git clone https://github.com/GitGuru87/ProductCrudOperation.git
 cd ProductCrudOperation
 
 **Set up the database**
@@ -39,7 +39,7 @@ In the appsettings.json file, update the DefaultConnection to match your SQL Ser
   "DefaultConnection": "Server=DESKTOP-BHG14L9;Database=ProductDB;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
 },
 
-Apply migrations (if using Entity Framework):
+**Apply migrations (if using Entity Framework):**:
 dotnet ef database update
 dotnet run
 The application should be accessible at https://localhost:5001 or http://localhost:5000.
